@@ -11,6 +11,9 @@ ContactUs.setup do |config|
   # Configure the e-mail address which should receive the contact form email notifications.
   config.mailer_to = "contact@please-change-me.com"
 
+  # Set to true to use a delayed delivery (sidekiq, Resque...).
+  # config.delayed_delivery = false
+
   # ==> Form Configuration
 
   # Configure the form to ask for the users name.

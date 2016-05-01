@@ -5,6 +5,7 @@ describe ContactUs do
   after do
     ContactUs.mailer_from = nil
     ContactUs.mailer_to = nil
+    ContactUs.delayed_delivery = false
     ContactUs.require_name = false
     ContactUs.require_subject = false
     ContactUs.success_redirect = nil
@@ -47,6 +48,13 @@ describe ContactUs do
     it 'should be configurable' do
       ContactUs.require_subject = true
       expect(ContactUs.require_subject).to eql(true)
+    end
+  end
+
+  describe 'delayed_delivery' do
+    it 'should be configurable' do
+      ContactUs.delayed_delivery = true
+      expect(ContactUs.delayed_delivery).to eql(true)
     end
   end
 

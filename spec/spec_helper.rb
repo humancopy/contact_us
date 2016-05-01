@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + '/../lib/contact_us/tasks/install'
 ENV["RAILS_ENV"] = "test"
 
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
+require "rspec-sidekiq"
 require "rails/test_help"
 require "rspec/rails"
 require 'shoulda-matchers'

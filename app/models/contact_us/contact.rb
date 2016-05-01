@@ -18,7 +18,7 @@ class ContactUs::Contact
 
   def save
     if self.valid?
-      ContactUs::ContactMailer.contact_email(self).deliver_now
+      ContactUs.delayed_delivery ? ContactUs::ContactMailer.delay.contact_email(self) : ContactUs::ContactMailer.contact_email(self).deliver_now
       return true
     end
     return false

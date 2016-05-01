@@ -7,6 +7,9 @@ module ContactUs
   # Address to send ContactUs email notifications to.
   mattr_accessor :mailer_to
 
+  # Enable or Disable delayed delivery.
+  mattr_accessor :delayed_delivery
+
   # Enable or Disable name field.
   mattr_accessor :require_name
 

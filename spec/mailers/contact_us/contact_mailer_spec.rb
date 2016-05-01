@@ -23,7 +23,11 @@ describe ContactUs::ContactMailer do
     describe "rendered without error" do
 
       before do
+        require 'sidekiq'
         @mailer = ContactUs::ContactMailer.contact_email(@contact)
+      end
+      after do
+        ContactUs.delayed_delivery = false
       end
 
       it "should have the initializers to address" do
@@ -48,6 +52,12 @@ describe ContactUs::ContactMailer do
 
       it "should deliver successfully" do
         expect { ContactUs::ContactMailer.contact_email(@contact).deliver_now }.not_to raise_error
+      end
+
+      it "should delay successfully" do
+        ContactUs.delayed_delivery = true
+        ContactUs::ContactMailer.delay.contact_email
+        expect(ContactUs::ContactMailer.instance_method :contact_email).to be_delayed
       end
 
       describe "and delivered" do
