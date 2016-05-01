@@ -10,6 +10,9 @@ module ContactUs
   # Enable or Disable delayed delivery.
   mattr_accessor :delayed_delivery
 
+  # The name of the queue for delayed delivery.
+  mattr_accessor :delayed_delivery_queue
+
   # Enable or Disable name field.
   mattr_accessor :require_name
 

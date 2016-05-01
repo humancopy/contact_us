@@ -14,6 +14,9 @@ ContactUs.setup do |config|
   # Set to true to use a delayed delivery (sidekiq, Resque...).
   # config.delayed_delivery = false
 
+  # Set to the name of the queue for delayed delivery
+  # config.delayed_delivery_queue = nil
+
   # ==> Form Configuration
 
   # Configure the form to ask for the users name.

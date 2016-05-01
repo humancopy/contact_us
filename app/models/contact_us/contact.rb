@@ -19,7 +19,7 @@ module ContactUs
 
     def save
       if self.valid?
-        ContactUs.delayed_delivery ? ContactMailer.delay.contact_email(self) : ContactMailer.contact_email(self).deliver_now
+        ContactUs.delayed_delivery ? ContactMailer.delay(queue: ContactUs.delayed_delivery_queue).contact_email(self) : ContactMailer.contact_email(self).deliver_now
         return true
       end
       return false
