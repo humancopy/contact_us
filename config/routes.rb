@@ -1,6 +1,4 @@
-Rails.application.routes.draw do
-  resources :contacts,
-    :controller => 'contact_us/contacts',
-    :only       => [:new, :create]
-  get 'contact-us' => 'contact_us/contacts#new', :as => :contact_us
+ContactUs::Engine.routes.draw do
+  resources :contacts, :only => [:new, :create]
+  root 'contacts#new'
 end

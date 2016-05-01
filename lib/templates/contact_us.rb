@@ -27,6 +27,9 @@ ContactUs.setup do |config|
   # config.form_gem = 'formtastic'
   config.form_gem = nil
 
+  # Mount the routes automatically
+  config.mount_point = '/contact-us'
+
   # Configure the redirect URL after a successful submission
   config.success_redirect = '/'
 

@@ -1,6 +1,6 @@
-module ContactUs
-  require 'contact_us/engine'
+require 'contact_us/engine'
 
+module ContactUs
   # Address ContactUs email notifications are sent from.
   mattr_accessor :mailer_from
 
@@ -18,6 +18,9 @@ module ContactUs
 
   # Formtastic or SimpleForm
   mattr_accessor :form_gem
+
+  # Mount the routes automatically
+  mattr_accessor :mount_point
 
   # URL after a successful submission
   mattr_accessor :success_redirect

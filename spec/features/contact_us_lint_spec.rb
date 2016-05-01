@@ -17,11 +17,11 @@ describe 'Contact Us page', :type => :feature do
 
   it 'displays default contact form properly' do
     visit contact_us_path
-    within "form#new_contact_us_contact" do
-      expect(page).to have_selector "input#contact_us_contact_email"
-      expect(page).to have_selector "textarea#contact_us_contact_message"
-      expect(page).not_to have_selector "input#contact_us_contact_name"
-      expect(page).not_to have_selector "input#contact_us_contact_subject"
+    within "form#new_contact" do
+      expect(page).to have_selector "input#contact_email"
+      expect(page).to have_selector "textarea#contact_message"
+      expect(page).not_to have_selector "input#contact_name"
+      expect(page).not_to have_selector "input#contact_subject"
       expect(page).to have_selector "input.submit"
     end
   end
@@ -64,10 +64,10 @@ describe 'Contact Us page', :type => :feature do
         end
 
         it "I should see two error messages" do
-          within '#contact_us_contact_email_input' do
+          within '#contact_email_input' do
             expect(page).to have_content "is invalid"
           end
-          within '#contact_us_contact_message_input' do
+          within '#contact_message_input' do
             expect(page).to have_content "can't be blank"
           end
         end
@@ -88,8 +88,8 @@ describe 'Contact Us page', :type => :feature do
     end
 
     it "displays an input for name and subject" do
-      expect(page).to have_selector "input#contact_us_contact_name"
-      expect(page).to have_selector "input#contact_us_contact_subject"
+      expect(page).to have_selector "input#contact_name"
+      expect(page).to have_selector "input#contact_subject"
     end
 
     context "Submitting the form" do
@@ -97,8 +97,8 @@ describe 'Contact Us page', :type => :feature do
         before do
           fill_in 'Email', :with => 'test@example.com'
           fill_in 'Message', :with => 'howdy'
-          fill_in 'contact_us_contact[name]', :with => 'Jeff'
-          fill_in 'contact_us_contact[subject]', :with => 'Testing contact form.'
+          fill_in 'contact[name]', :with => 'Jeff'
+          fill_in 'contact[subject]', :with => 'Testing contact form.'
           click_button 'Submit'
         end
 
@@ -126,10 +126,10 @@ describe 'Contact Us page', :type => :feature do
         end
 
         it "I should see error messages" do
-          within '#contact_us_contact_name_input' do
+          within '#contact_name_input' do
             expect(page).to have_content "can't be blank"
           end
-          within '#contact_us_contact_subject_input' do
+          within '#contact_subject_input' do
             expect(page).to have_content "can't be blank"
           end
         end
