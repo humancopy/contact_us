@@ -13,21 +13,34 @@ module ContactUs
 
     def initialize(attributes = {})
       attributes.each do |key, value|
-        self.send("#{key}=", value)
+        send("#{key}=", value)
       end
     end
 
     def save
-      if self.valid?
-        ContactUs.delayed_delivery ? ContactMailer.delay(queue: ContactUs.delayed_delivery_queue).contact_email(self) : ContactMailer.contact_email(self).deliver_now
+      if valid?
+        deliver
         return true
       end
-      return false
+      false
     end
 
     def persisted?
       false
     end
 
+    protected
+
+    def deliver
+      ContactUs.delayed_delivery ? deliver_later : deliver_now
+    end
+
+    def deliver_now
+      ContactMailer.contact_email(self).deliver_now
+    end
+
+    def deliver_later
+      ContactMailer.delay(queue: ContactUs.delayed_delivery_queue).contact_email(self)
+    end
   end
 end
